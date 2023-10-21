@@ -55,7 +55,11 @@ const Home = () => {
           ) : (
             <div className={styles['chat-container']}>
               {/* ChatList messages={messages} */}
-              <header className={styles['chat-header']} />
+              <header className={styles['chat-header']}>
+                <button className={styles['button-sidebar']}>
+                  <Sidebar size={'16px'} />
+                </button>
+              </header>
               <div className={styles['chat-list']}>
                 {messages.map((m) => (
                   <div
