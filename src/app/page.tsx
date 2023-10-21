@@ -8,7 +8,7 @@ import { RefreshCcw, Sidebar, X } from 'react-feather';
 import {
   Button,
   ChatInput,
-  PromptCreateForm,
+  PromptCreateInputField,
   PromptRecommendCard,
 } from './components';
 import styles from './page.module.scss';
@@ -30,7 +30,7 @@ const Home = () => {
               <h1 className={styles['background-text']}>ChatGPT-MR</h1>
               <div className={styles['prompt-create-container']}>
                 <div className={styles['prompt-create-form-wrapper']}>
-                  <PromptCreateForm />
+                  <PromptCreateInputField />
                 </div>
                 <div className={styles['card-group']}>
                   <PromptRecommendCard
@@ -101,7 +101,7 @@ const Home = () => {
                       }}
                     />
                   </div>
-                  <PromptCreateForm
+                  <PromptCreateInputField
                     onClose={() => {
                       setisPopoverOpened(false);
                     }}

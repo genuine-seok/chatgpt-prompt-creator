@@ -2,4 +2,4 @@
 export * from './Common';
 export * from './ChatInput';
 export * from './PromptRecommendCard';
-export * from './PromptCreateForm';
+export * from './PromptCreateInputField';

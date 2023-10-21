@@ -1,12 +1,14 @@
 import styles from './index.module.scss';
 import { Button, Textbox } from '..';
 
-interface PromptCreateFormProps {
+interface PromptCreateInputFieldProps {
   onClose?: () => void;
 }
 
-export const PromptCreateForm = ({ onClose }: PromptCreateFormProps) => (
-  <form className={styles['prompt-create-form']}>
+export const PromptCreateInputField = ({
+  onClose,
+}: PromptCreateInputFieldProps) => (
+  <div className={styles['prompt-create-input-field']}>
     <Textbox
       label="질문의 목적을 입력해 주세요. 답변은 얻으려고 하는 이유는 무엇인가요?"
       placeholder="ex.발표 자료를 만들기 위하여"
@@ -70,5 +72,5 @@ export const PromptCreateForm = ({ onClose }: PromptCreateFormProps) => (
         <Button>생성</Button>
       </div>
     </div>
-  </form>
+  </div>
 );
