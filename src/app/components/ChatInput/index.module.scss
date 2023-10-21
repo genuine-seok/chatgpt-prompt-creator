@@ -1,0 +1,5 @@
+@use '../../style/lib.scss' as lib;
+
+.chat-input {
+  @include lib.input();
+}

@@ -2,7 +2,7 @@
 
 import { useChat } from 'ai/react';
 
-import { PromptCreateForm, PromptRecommendCard } from './components';
+import { ChatInput, PromptCreateForm, PromptRecommendCard } from './components';
 import styles from './page.module.scss';
 
 const Home = () => {
@@ -42,14 +42,8 @@ const Home = () => {
               description="asking a friend to be my plus-one at a wedding"
             />
           </div>
-          <input
-            className={styles['chatting-input']}
-            type="text"
-            value={input}
-            placeholder="Send a message"
-            onChange={handleInputChange}
-          />
-          <p className={styles['chatting-tip-description']}>
+          <ChatInput value={input} onChange={handleInputChange} />
+          <p className={styles['chat-tip-description']}>
             Free Research Preview. ChatGPT may produce inaccurate information
             about people, places, or facts.{' '}
             <span>ChatGPT September 25 Version</span>
