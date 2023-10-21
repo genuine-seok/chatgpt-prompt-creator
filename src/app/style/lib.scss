@@ -1,0 +1,20 @@
+@mixin input() {
+  max-height: 200px;
+  height: 3rem;
+  overflow-y: hidden;
+  max-width: 680px;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  background: #40414f;
+  border: none;
+  outline: none;
+
+  font-size: 1rem;
+  color: white;
+
+  &::placeholder {
+    color: #8e8ea0;
+  }
+
+  width: 100%;
+}

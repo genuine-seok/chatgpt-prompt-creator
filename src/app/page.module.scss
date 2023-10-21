@@ -1,0 +1,51 @@
+@use './style/lib.scss' as lib;
+
+.chatting-room-background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 1rem;
+
+  height: 100vh;
+  background: #343541;
+}
+
+.chatting-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  margin-top: auto;
+
+  font-size: 0.75rem;
+  color: #c5c5d2;
+}
+
+.card-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 760px;
+  gap: 0.75rem;
+
+  padding: 0.5rem;
+}
+
+// TODO: 재활용
+.chatting-input {
+  @include lib.input();
+}
+
+.chatting-tip-description {
+  & > span {
+    text-decoration-line: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
