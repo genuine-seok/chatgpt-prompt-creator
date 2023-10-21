@@ -1,7 +1,11 @@
 import styles from './index.module.scss';
 import { Button, Textbox } from '..';
 
-export const PromptCreateForm = () => (
+interface PromptCreateFormProps {
+  onClose?: () => void;
+}
+
+export const PromptCreateForm = ({ onClose }: PromptCreateFormProps) => (
   <form className={styles['prompt-create-form']}>
     <Textbox
       label="질문의 목적을 입력해 주세요. 답변은 얻으려고 하는 이유는 무엇인가요?"
@@ -47,7 +51,20 @@ export const PromptCreateForm = () => (
       }
     />
     {/* ButtonGroup */}
-    <div className={styles['button-group-container']}>
+    <div
+      className={`${styles['button-group-container']} ${
+        onClose && styles['with-close-button']
+      }`}
+    >
+      {onClose && (
+        <Button
+          onClick={() => {
+            onClose?.();
+          }}
+        >
+          취소
+        </Button>
+      )}
       <div className={styles['button-group']}>
         <Button>초기화</Button>
         <Button>생성</Button>

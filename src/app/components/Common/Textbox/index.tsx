@@ -29,9 +29,6 @@ export const Textbox = ({
       {label}
       {/* TODO: WithTooltip 래퍼 컴포넌트 */}
       {tooltipContent && (
-        // <WithTooltip>
-        //   <Info fill="#40414f" size={'18px'} />
-        // </WithTooltip>
         <Tooltip.Provider>
           <Tooltip.Root delayDuration={0}>
             <Tooltip.Trigger asChild>

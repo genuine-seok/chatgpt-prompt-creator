@@ -37,6 +37,12 @@
   margin-bottom: 1rem;
 }
 
+.prompt-create-form-wrapper {
+  border: 1px solid rgb(86, 88, 105);
+  border-radius: 0.5rem;
+  width: 748px;
+}
+
 .background-container {
   display: flex;
   align-items: center;
@@ -148,7 +154,29 @@
 }
 
 .button-group {
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.popover-container {
+  position: absolute;
+  max-width: 548px;
+  // max-width: 548px;
+  bottom: 3rem;
+  padding: 1rem;
+  border: 1px solid #545666;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.popover-header {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.popover-button-close {
+  cursor: pointer;
 }

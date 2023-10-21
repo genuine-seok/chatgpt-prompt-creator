@@ -2,7 +2,8 @@
 
 import { useChat } from 'ai/react';
 
-import { RefreshCcw, Sidebar } from 'react-feather';
+import { useState } from 'react';
+import { RefreshCcw, Sidebar, X } from 'react-feather';
 
 import {
   Button,
@@ -13,6 +14,7 @@ import {
 import styles from './page.module.scss';
 
 const Home = () => {
+  const [isPopoverOpened, setisPopoverOpened] = useState(false);
   const { messages, input, handleInputChange, handleSubmit, reload } =
     useChat();
 
@@ -23,12 +25,13 @@ const Home = () => {
           <Sidebar size={'16px'} />
         </button>
         <div className={styles['background-container']}>
-          {/* TODO: ChatList와 PromptCreateForm 동적 렌더링 추가 */}
           {!messages.length ? (
             <div className={styles['background-text-container']}>
               <h1 className={styles['background-text']}>ChatGPT-MR</h1>
               <div className={styles['prompt-create-container']}>
-                <PromptCreateForm />
+                <div className={styles['prompt-create-form-wrapper']}>
+                  <PromptCreateForm />
+                </div>
                 <div className={styles['card-group']}>
                   <PromptRecommendCard
                     title="Come up with concepts"
@@ -79,7 +82,32 @@ const Home = () => {
         <form className={styles['chatting-form']} onSubmit={handleSubmit}>
           {messages.length ? (
             <div className={styles['button-group']}>
-              <Button type="ghost">다시 입력해서 질문하기</Button>
+              <Button
+                type="ghost"
+                onClick={() => {
+                  setisPopoverOpened(true);
+                }}
+              >
+                다시 입력해서 질문하기
+              </Button>
+              {isPopoverOpened && (
+                <div className={styles['popover-container']}>
+                  <div className={styles['popover-header']}>
+                    <X
+                      className={styles['popover-button-close']}
+                      size={'14px'}
+                      onClick={() => {
+                        setisPopoverOpened(false);
+                      }}
+                    />
+                  </div>
+                  <PromptCreateForm
+                    onClose={() => {
+                      setisPopoverOpened(false);
+                    }}
+                  />
+                </div>
+              )}
               <Button
                 icon={<RefreshCcw size={'14px'} />}
                 type="ghost"
