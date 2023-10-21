@@ -1,0 +1,18 @@
+.button {
+  min-width: 87px;
+  color: white;
+  background: #40414e;
+  border: none;
+  border-radius: 0.4rem;
+  outline: none;
+
+  padding: 0.5rem 1.5rem;
+
+  cursor: pointer;
+
+  transition: 0.1s ease-in-out all;
+
+  &:hover {
+    background: #5bc083;
+  }
+}

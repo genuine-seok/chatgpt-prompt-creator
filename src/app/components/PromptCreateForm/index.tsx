@@ -1,5 +1,5 @@
 import styles from './index.module.scss';
-import { Textbox } from '..';
+import { Button, Textbox } from '..';
 
 export const PromptCreateForm = () => (
   <form className={styles['prompt-create-form']}>
@@ -16,5 +16,7 @@ export const PromptCreateForm = () => (
       placeholder="ex.금융회사 마케팅팀에서 근무"
     />
     {/* ButtonGroup */}
+    <Button>초기화</Button>
+    <Button>생성</Button>
   </form>
 );

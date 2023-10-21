@@ -22,7 +22,6 @@ const Home = () => {
             ))
           : null}
         <PromptCreateForm />
-
         {/* ChatForm */}
         <form className={styles['chatting-form']} onSubmit={handleSubmit}>
           <div className={styles['card-group']}>
