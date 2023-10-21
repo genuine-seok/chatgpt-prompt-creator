@@ -11,3 +11,14 @@
   border: 1px solid rgb(86, 88, 105);
   border-radius: 0.5rem;
 }
+
+.button-group-container {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+}
+.button-group {
+  display: flex;
+  gap: 0.6rem;
+}

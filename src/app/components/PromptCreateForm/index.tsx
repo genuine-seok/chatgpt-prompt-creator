@@ -16,7 +16,11 @@ export const PromptCreateForm = () => (
       placeholder="ex.금융회사 마케팅팀에서 근무"
     />
     {/* ButtonGroup */}
-    <Button>초기화</Button>
-    <Button>생성</Button>
+    <div className={styles['button-group-container']}>
+      <div className={styles['button-group']}>
+        <Button>초기화</Button>
+        <Button>생성</Button>
+      </div>
+    </div>
   </form>
 );

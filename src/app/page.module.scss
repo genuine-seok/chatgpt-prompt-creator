@@ -9,6 +9,23 @@
   background: #343541;
 }
 
+.prompt-create-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+}
+
+.card-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 760px;
+  gap: 0.75rem;
+
+  padding: 0.5rem 0.25rem;
+}
+
 .chatting-form {
   display: flex;
   flex-wrap: wrap;
@@ -21,14 +38,4 @@
 
   font-size: 0.75rem;
   color: #c5c5d2;
-}
-
-.card-group {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 760px;
-  gap: 0.75rem;
-
-  padding: 0.5rem;
 }

@@ -21,9 +21,9 @@ const Home = () => {
               </div>
             ))
           : null}
-        <PromptCreateForm />
-        {/* ChatForm */}
-        <form className={styles['chatting-form']} onSubmit={handleSubmit}>
+        {/* PromptCreateForm */}
+        <div className={styles['prompt-create-container']}>
+          <PromptCreateForm />
           <div className={styles['card-group']}>
             <PromptRecommendCard
               title="Come up with concepts"
@@ -42,6 +42,9 @@ const Home = () => {
               description="asking a friend to be my plus-one at a wedding"
             />
           </div>
+        </div>
+        {/* ChatForm */}
+        <form className={styles['chatting-form']} onSubmit={handleSubmit}>
           <ChatInput value={input} onChange={handleInputChange} />
         </form>
       </div>
