@@ -26,4 +26,12 @@
   }
 
   width: 100%;
+
+  &:disabled {
+    &:hover,
+    &:focus {
+      border: none;
+      cursor: not-allowed;
+    }
+  }
 }

@@ -15,8 +15,15 @@ import styles from './page.module.scss';
 
 const Home = () => {
   const [isPopoverOpened, setisPopoverOpened] = useState(false);
-  const { messages, input, handleInputChange, handleSubmit, reload } =
-    useChat();
+
+  const {
+    messages,
+    input,
+    // setInput,
+    handleInputChange,
+    handleSubmit,
+    reload,
+  } = useChat({ id: 'chat-main' });
 
   return (
     <main>
