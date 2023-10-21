@@ -1,4 +1,8 @@
 .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   min-width: 87px;
   color: white;
   background: #40414e;
@@ -14,5 +18,17 @@
 
   &:hover {
     background: #5bc083;
+  }
+}
+
+.ghost {
+  color: rgb(217, 217, 227);
+  background: none;
+  border: 1px solid rgb(86, 88, 105);
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
   }
 }

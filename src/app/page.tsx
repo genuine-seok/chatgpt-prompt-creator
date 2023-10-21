@@ -2,20 +2,19 @@
 
 import { useChat } from 'ai/react';
 
-import { Sidebar } from 'react-feather';
+import { RefreshCcw, Sidebar } from 'react-feather';
 
-import { ChatInput, PromptCreateForm, PromptRecommendCard } from './components';
+import {
+  Button,
+  ChatInput,
+  PromptCreateForm,
+  PromptRecommendCard,
+} from './components';
 import styles from './page.module.scss';
 
 const Home = () => {
-  // const [isInitialState] = useState(true);
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    // reload
-  } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, reload } =
+    useChat();
 
   return (
     <main>
@@ -78,12 +77,20 @@ const Home = () => {
         </div>
         {/* ChatForm */}
         <form className={styles['chatting-form']} onSubmit={handleSubmit}>
-          {/* {messages.length && (
+          {messages.length ? (
             <div className={styles['button-group']}>
-              <Button>다시 입력해서 질문하기</Button>
-              <Button>Regenerate</Button>
+              <Button type="ghost">다시 입력해서 질문하기</Button>
+              <Button
+                icon={<RefreshCcw size={'14px'} />}
+                type="ghost"
+                onClick={() => {
+                  reload();
+                }}
+              >
+                Regenerate
+              </Button>
             </div>
-          )} */}
+          ) : null}
           <ChatInput value={input} onChange={handleInputChange} />
         </form>
       </div>
