@@ -1,13 +1,13 @@
 import styles from './index.module.scss';
 
-interface ChatInputProps {
+interface TextInputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ChatInput = ({ value, onChange }: ChatInputProps) => (
+export const TextInput = ({ value, onChange }: TextInputProps) => (
   <input
-    className={styles['chat-input']}
+    className={styles['text-input']}
     type="text"
     value={value}
     placeholder="Send a message"

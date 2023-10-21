@@ -2,7 +2,7 @@
 
 import { useChat } from 'ai/react';
 
-import { ChatInput, PromptCreateForm, PromptRecommendCard } from './components';
+import { PromptCreateForm, PromptRecommendCard, TextInput } from './components';
 import styles from './page.module.scss';
 
 const Home = () => {
@@ -42,7 +42,7 @@ const Home = () => {
               description="asking a friend to be my plus-one at a wedding"
             />
           </div>
-          <ChatInput value={input} onChange={handleInputChange} />
+          <TextInput value={input} onChange={handleInputChange} />
           <p className={styles['chat-tip-description']}>
             Free Research Preview. ChatGPT may produce inaccurate information
             about people, places, or facts.{' '}
