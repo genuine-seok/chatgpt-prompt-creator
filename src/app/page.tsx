@@ -11,6 +11,7 @@ const Home = () => {
   return (
     <main>
       <div className={styles['chatting-room-background']}>
+        {/* TODO: ChatList와 PromptCreateForm 동적 렌더링 추가 */}
         {/* ChatList messages={messages} */}
         {messages.length > 0
           ? messages.map((m) => (
@@ -20,8 +21,8 @@ const Home = () => {
               </div>
             ))
           : null}
-
         <PromptCreateForm />
+
         {/* ChatForm */}
         <form className={styles['chatting-form']} onSubmit={handleSubmit}>
           <div className={styles['card-group']}>
