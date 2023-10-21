@@ -9,7 +9,7 @@ export const PromptCreateForm = () => (
     />
     <Textbox
       label="얻고자 하는 주제를 입력해주세요. 어떤 것에 대해 알고 싶으신가요?"
-      placeholder="AI 기술 동향"
+      placeholder="ex. AI 기술 동향"
     />
     <Textbox
       label="더 나은 답변을 위해 ChatGPT가 고려할 나만의 특징이 있다면 입력해주세요."
