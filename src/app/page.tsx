@@ -9,7 +9,7 @@ import {
   Button,
   ChatInput,
   PromptCreateInputField,
-  PromptRecommendCard,
+  PromptCard,
 } from './components';
 import styles from './page.module.scss';
 import { useChatStore } from './store';
@@ -34,24 +34,27 @@ const Home = () => {
           {!messages.length ? (
             <div className={styles['background-text-container']}>
               <h1 className={styles['background-text']}>ChatGPT-MR</h1>
+              {/* PromptCreateForm */}
               <div className={styles['prompt-create-container']}>
                 <div className={styles['prompt-create-form-wrapper']}>
                   <PromptCreateInputField setInput={setInput} />
                 </div>
+                {/* PromptCardGroup */}
                 <div className={styles['card-group']}>
-                  <PromptRecommendCard
+                  {/* PromptCard */}
+                  <PromptCard
                     title="Come up with concepts"
                     description="for a retro-style arcade game"
                   />
-                  <PromptRecommendCard
+                  <PromptCard
                     title="Recommend activities"
                     description="for a team-building day with remote employees"
                   />
-                  <PromptRecommendCard
+                  <PromptCard
                     title="Show me a code snippet"
                     description="of a website's sticky header"
                   />
-                  <PromptRecommendCard
+                  <PromptCard
                     title="Write a text message"
                     description="asking a friend to be my plus-one at a wedding"
                   />
@@ -89,7 +92,11 @@ const Home = () => {
           )}
         </div>
         {/* ChatForm */}
-        <form className={styles['chatting-form']} onSubmit={handleSubmit}>
+        <form
+          id="chatting-form"
+          className={styles['chatting-form']}
+          onSubmit={handleSubmit}
+        >
           {messages.length ? (
             <div className={styles['button-group']}>
               <Button
