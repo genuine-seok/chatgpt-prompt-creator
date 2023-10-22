@@ -38,22 +38,6 @@
   overflow: auto;
 }
 
-.background-text-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-
-.background-text {
-  color: rgba(86, 88, 105, 0.9);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 2.5rem;
-  height: 100%;
-  padding-top: 4rem;
-}
-
 .chatting-form {
   display: flex;
   flex-wrap: wrap;

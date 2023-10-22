@@ -36,10 +36,7 @@ const Home = () => {
           {isChatInProgress ? (
             <ChatList messages={messages} />
           ) : (
-            <div className={styles['background-text-container']}>
-              <h1 className={styles['background-text']}>ChatGPT-MR</h1>
-              <PromptCreateForm setInput={setInput} />
-            </div>
+            <PromptCreateForm setInput={setInput} />
           )}
         </div>
         {/* ChatForm */}
@@ -88,6 +85,7 @@ const Home = () => {
               </Button>
             </div>
           )}
+          {/* TODO: isChatInProgress 여부에 따라, 버튼 그룹 렌더링 여부를 내부에서 추상화한다 */}
           <ChatInput
             isLoading={isLoading}
             value={input}
