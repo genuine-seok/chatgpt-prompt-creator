@@ -4,6 +4,9 @@ interface ChatStore {
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
 
+  isPopoverOpened: boolean;
+  setIsPopoverOpened: (isPopoverOpened: boolean) => void;
+
   purpose: string;
   setPurpose: (purpose: string) => void;
   subject: string;
@@ -17,6 +20,9 @@ interface ChatStore {
 export const useChatStore = create<ChatStore>((set) => ({
   isLoading: false,
   setIsLoading: (isLoading) => set(() => ({ isLoading })),
+
+  isPopoverOpened: false,
+  setIsPopoverOpened: (isPopoverOpened) => set(() => ({ isPopoverOpened })),
 
   purpose: '',
   setPurpose: (purpose) => set(() => ({ purpose })),
