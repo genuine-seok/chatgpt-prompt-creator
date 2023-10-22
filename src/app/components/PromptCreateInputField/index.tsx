@@ -36,7 +36,10 @@ export const PromptCreateInputField = ({
     state.resetPromptForm,
   ]);
 
-  const handleCreatePrompt = async () => {
+  const handleCreatePrompt = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
     setInput?.('');
     const prompt = await getPromptTextBy({
       purpose,
@@ -133,6 +136,7 @@ export const PromptCreateInputField = ({
             onClick={handleCreatePrompt}
             isLoading={isLoading}
             disabled={!purpose || !subject || !characteristics}
+            type="submit"
           >
             생성
           </Button>

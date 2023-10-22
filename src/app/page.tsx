@@ -9,21 +9,19 @@ import {
   Button,
   ChatInput,
   PromptCreateInputField,
-  PromptCard,
-  PromptCardGroup,
+  PromptCreateForm,
 } from './components';
 import styles from './page.module.scss';
 import { useChatStore } from './store';
 
 const Home = () => {
   const [isPopoverOpened, setisPopoverOpened] = useState(false);
+  const [isLoading] = useChatStore((state) => [state.isLoading]);
 
   const { messages, input, setInput, handleInputChange, handleSubmit, reload } =
     useChat({
       id: 'chat-main',
     });
-
-  const [isLoading] = useChatStore((state) => [state.isLoading]);
 
   return (
     <main>
@@ -35,30 +33,7 @@ const Home = () => {
           {!messages.length ? (
             <div className={styles['background-text-container']}>
               <h1 className={styles['background-text']}>ChatGPT-MR</h1>
-              {/* PromptCreateForm */}
-              <div className={styles['prompt-create-container']}>
-                <div className={styles['prompt-create-form-wrapper']}>
-                  <PromptCreateInputField setInput={setInput} />
-                </div>
-                <PromptCardGroup>
-                  <PromptCard
-                    title="Come up with concepts"
-                    description="for a retro-style arcade game"
-                  />
-                  <PromptCard
-                    title="Recommend activities"
-                    description="for a team-building day with remote employees"
-                  />
-                  <PromptCard
-                    title="Show me a code snippet"
-                    description="of a website's sticky header"
-                  />
-                  <PromptCard
-                    title="Write a text message"
-                    description="asking a friend to be my plus-one at a wedding"
-                  />
-                </PromptCardGroup>
-              </div>
+              <PromptCreateForm setInput={setInput} />
             </div>
           ) : (
             <div className={styles['chat-container']}>
@@ -99,7 +74,7 @@ const Home = () => {
           {messages.length ? (
             <div className={styles['button-group']}>
               <Button
-                type="ghost"
+                variant="ghost"
                 onClick={() => {
                   setisPopoverOpened(true);
                 }}
@@ -127,7 +102,7 @@ const Home = () => {
               )}
               <Button
                 icon={<RefreshCcw size={'14px'} />}
-                type="ghost"
+                variant="ghost"
                 onClick={() => {
                   reload();
                 }}
