@@ -10,6 +10,7 @@ import {
   ChatInput,
   PromptCreateInputField,
   PromptCreateForm,
+  ChatList,
 } from './components';
 import styles from './page.module.scss';
 import { useChatStore } from './store';
@@ -23,6 +24,8 @@ const Home = () => {
       id: 'chat-main',
     });
 
+  const isChatInProgress = !!messages.length;
+
   return (
     <main>
       <div className={styles['chatting-room-background']}>
@@ -30,38 +33,12 @@ const Home = () => {
           <Sidebar size={'16px'} />
         </button>
         <div className={styles['background-container']}>
-          {!messages.length ? (
+          {isChatInProgress ? (
+            <ChatList messages={messages} />
+          ) : (
             <div className={styles['background-text-container']}>
               <h1 className={styles['background-text']}>ChatGPT-MR</h1>
               <PromptCreateForm setInput={setInput} />
-            </div>
-          ) : (
-            <div className={styles['chat-container']}>
-              {/* ChatList messages={messages} */}
-              <header className={styles['chat-header']}>
-                <button className={styles['button-sidebar']}>
-                  <Sidebar size={'16px'} />
-                </button>
-              </header>
-              <div className={styles['chat-list']}>
-                {messages.map((m) => (
-                  <div
-                    className={`${styles['chat-item-row']} ${
-                      m.role === 'user' ? styles.user : styles.ai
-                    }`}
-                    key={m.id}
-                  >
-                    <div className={styles['chat-item-container']}>
-                      <div
-                        className={`${styles['chat-thumbnail']} ${
-                          m.role === 'user' ? styles.user : styles.ai
-                        }`}
-                      />
-                      <p className={styles['chat-content']}>{m.content}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           )}
         </div>
@@ -71,7 +48,7 @@ const Home = () => {
           className={styles['chatting-form']}
           onSubmit={handleSubmit}
         >
-          {messages.length ? (
+          {isChatInProgress && (
             <div className={styles['button-group']}>
               <Button
                 variant="ghost"
@@ -110,7 +87,7 @@ const Home = () => {
                 Regenerate
               </Button>
             </div>
-          ) : null}
+          )}
           <ChatInput
             isLoading={isLoading}
             value={input}
