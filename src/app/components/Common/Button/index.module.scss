@@ -33,7 +33,9 @@
   }
 }
 
-.loading {
+.disabled {
+  opacity: 0.4;
+
   &:hover {
     background: #40414e;
     cursor: not-allowed;

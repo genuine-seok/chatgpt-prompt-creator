@@ -9,6 +9,7 @@ interface ButtonProps {
   isLoading?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children?: React.ReactNode;
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -17,13 +18,15 @@ export const Button = ({
   isLoading,
   onClick,
   children,
+  disabled = false,
 }: ButtonProps) => (
   <button
     className={`${styles.button} ${styles[type]} ${
-      isLoading && styles.loading
+      (isLoading || disabled) && styles.disabled
     }`}
     onClick={onClick}
-    disabled={isLoading}
+    disabled={disabled || isLoading}
+    type="button"
   >
     {icon}
     {isLoading ? <Spinner /> : children}

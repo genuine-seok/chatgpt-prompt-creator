@@ -140,6 +140,10 @@
   }
 }
 
+.chat-content {
+  white-space: pre-wrap;
+}
+
 .chatting-form {
   display: flex;
   flex-wrap: wrap;

@@ -12,18 +12,17 @@ import {
   PromptRecommendCard,
 } from './components';
 import styles from './page.module.scss';
+import { useChatStore } from './store';
 
 const Home = () => {
   const [isPopoverOpened, setisPopoverOpened] = useState(false);
 
-  const {
-    messages,
-    input,
-    // setInput,
-    handleInputChange,
-    handleSubmit,
-    reload,
-  } = useChat({ id: 'chat-main' });
+  const { messages, input, setInput, handleInputChange, handleSubmit, reload } =
+    useChat({
+      id: 'chat-main',
+    });
+
+  const [isLoading] = useChatStore((state) => [state.isLoading]);
 
   return (
     <main>
@@ -37,7 +36,7 @@ const Home = () => {
               <h1 className={styles['background-text']}>ChatGPT-MR</h1>
               <div className={styles['prompt-create-container']}>
                 <div className={styles['prompt-create-form-wrapper']}>
-                  <PromptCreateInputField />
+                  <PromptCreateInputField setInput={setInput} />
                 </div>
                 <div className={styles['card-group']}>
                   <PromptRecommendCard
@@ -81,7 +80,7 @@ const Home = () => {
                           m.role === 'user' ? styles.user : styles.ai
                         }`}
                       />
-                      <p>{m.content}</p>
+                      <p className={styles['chat-content']}>{m.content}</p>
                     </div>
                   </div>
                 ))}
@@ -113,6 +112,7 @@ const Home = () => {
                     />
                   </div>
                   <PromptCreateInputField
+                    setInput={setInput}
                     onClose={() => {
                       setisPopoverOpened(false);
                     }}
@@ -130,7 +130,11 @@ const Home = () => {
               </Button>
             </div>
           ) : null}
-          <ChatInput value={input} onChange={handleInputChange} />
+          <ChatInput
+            isLoading={isLoading}
+            value={input}
+            onChange={handleInputChange}
+          />
         </form>
       </div>
     </main>

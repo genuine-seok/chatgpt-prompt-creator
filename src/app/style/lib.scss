@@ -26,12 +26,15 @@
   }
 
   width: 100%;
+}
 
-  &:disabled {
-    &:hover,
-    &:focus {
-      border: none;
-      cursor: not-allowed;
-    }
+.disabled {
+  opacity: 0.4;
+
+  &:hover,
+  &:focus {
+    border: none;
+    outline: none;
+    cursor: not-allowed;
   }
 }

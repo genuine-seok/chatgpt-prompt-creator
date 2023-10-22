@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useChatStore } from '../store';
 
 interface getPromptTextByProps {
   purpose: string;
@@ -6,14 +6,25 @@ interface getPromptTextByProps {
   characteristics: string;
 }
 
+interface PromptCreateResponseType {
+  status: number;
+  data: {
+    role: string;
+    content: string;
+  };
+}
+
 export const usePromptCreator = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useChatStore((state) => [
+    state.isLoading,
+    state.setIsLoading,
+  ]);
 
   const getPromptTextBy = async ({
     purpose,
     subject,
     characteristics,
-  }: getPromptTextByProps) => {
+  }: getPromptTextByProps): Promise<PromptCreateResponseType> => {
     setIsLoading(true);
     const res = await fetch('/api/prompt', {
       method: 'POST',

@@ -7,14 +7,12 @@ interface TextInputProps {
 }
 
 export const TextInput = ({ isLoading, value, onChange }: TextInputProps) => (
-  <>
-    <input
-      className={styles['text-input']}
-      type="text"
-      value={value}
-      placeholder={`${isLoading ? '' : 'Send a message'}`}
-      onChange={onChange}
-      disabled={isLoading}
-    />
-  </>
+  <input
+    className={`${styles['text-input']} ${isLoading && styles.disabled}`}
+    type="text"
+    value={value}
+    placeholder={`${isLoading ? 'Generating prompt...' : 'Send a message'}`}
+    onChange={onChange}
+    disabled={isLoading}
+  />
 );
