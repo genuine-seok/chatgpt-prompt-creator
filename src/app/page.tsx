@@ -10,6 +10,7 @@ import {
   ChatInput,
   PromptCreateInputField,
   PromptCard,
+  PromptCardGroup,
 } from './components';
 import styles from './page.module.scss';
 import { useChatStore } from './store';
@@ -39,9 +40,7 @@ const Home = () => {
                 <div className={styles['prompt-create-form-wrapper']}>
                   <PromptCreateInputField setInput={setInput} />
                 </div>
-                {/* PromptCardGroup */}
-                <div className={styles['card-group']}>
-                  {/* PromptCard */}
+                <PromptCardGroup>
                   <PromptCard
                     title="Come up with concepts"
                     description="for a retro-style arcade game"
@@ -58,7 +57,7 @@ const Home = () => {
                     title="Write a text message"
                     description="asking a friend to be my plus-one at a wedding"
                   />
-                </div>
+                </PromptCardGroup>
               </div>
             </div>
           ) : (
