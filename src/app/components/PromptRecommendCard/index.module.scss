@@ -1,0 +1,33 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-basis: 49%;
+
+  border: 1px solid rgb(86, 88, 105);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+
+  transition: 0.1s ease-in-out background;
+
+  &:hover {
+    cursor: pointer;
+    background: #40414f;
+  }
+}
+
+.card-title {
+  font-weight: 700;
+  text-overflow: ellipsis;
+  color: rgba(217, 217, 227, 0.8);
+  font-size: 0.875rem;
+}
+
+.card-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  color: rgb(197, 197, 210);
+  opacity: 0.5;
+  font-size: 0.875rem;
+}

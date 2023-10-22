@@ -1,0 +1,40 @@
+@mixin input() {
+  max-height: 200px;
+  height: 3rem;
+  overflow-y: hidden;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  background: #40414f;
+  border: 1px solid #545666;
+  outline: none;
+
+  font-size: 1rem;
+  color: white;
+
+  transition: 0.1s ease-in-out all;
+
+  &::placeholder {
+    color: #8e8ea0;
+  }
+
+  &:hover {
+    border: 1px solid white;
+  }
+
+  &:focus {
+    border: 1px solid white;
+  }
+
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.4;
+
+  &:hover,
+  &:focus {
+    border: none;
+    outline: none;
+    cursor: not-allowed;
+  }
+}

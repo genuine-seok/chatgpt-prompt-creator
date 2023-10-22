@@ -1,0 +1,9 @@
+.chat-tip-description {
+  & > span {
+    text-decoration-line: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

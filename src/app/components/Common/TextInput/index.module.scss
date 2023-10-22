@@ -1,0 +1,11 @@
+@use '../../../style/lib.scss' as lib;
+
+.text-input {
+  @include lib.input();
+  position: relative;
+}
+
+.textinput-loading-spinner {
+  position: absolute;
+  transform: translate(-50%, 50%);
+}

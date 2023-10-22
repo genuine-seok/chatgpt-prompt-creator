@@ -1,95 +1,144 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
 
-export default function Home() {
+import { useChat } from 'ai/react';
+
+import { useState } from 'react';
+import { RefreshCcw, Sidebar, X } from 'react-feather';
+
+import {
+  Button,
+  ChatInput,
+  PromptCreateInputField,
+  PromptRecommendCard,
+} from './components';
+import styles from './page.module.scss';
+import { useChatStore } from './store';
+
+const Home = () => {
+  const [isPopoverOpened, setisPopoverOpened] = useState(false);
+
+  const { messages, input, setInput, handleInputChange, handleSubmit, reload } =
+    useChat({
+      id: 'chat-main',
+    });
+
+  const [isLoading] = useChatStore((state) => [state.isLoading]);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <div className={styles['chatting-room-background']}>
+        <button className={styles['button-sidebar']}>
+          <Sidebar size={'16px'} />
+        </button>
+        <div className={styles['background-container']}>
+          {!messages.length ? (
+            <div className={styles['background-text-container']}>
+              <h1 className={styles['background-text']}>ChatGPT-MR</h1>
+              <div className={styles['prompt-create-container']}>
+                <div className={styles['prompt-create-form-wrapper']}>
+                  <PromptCreateInputField setInput={setInput} />
+                </div>
+                <div className={styles['card-group']}>
+                  <PromptRecommendCard
+                    title="Come up with concepts"
+                    description="for a retro-style arcade game"
+                  />
+                  <PromptRecommendCard
+                    title="Recommend activities"
+                    description="for a team-building day with remote employees"
+                  />
+                  <PromptRecommendCard
+                    title="Show me a code snippet"
+                    description="of a website's sticky header"
+                  />
+                  <PromptRecommendCard
+                    title="Write a text message"
+                    description="asking a friend to be my plus-one at a wedding"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className={styles['chat-container']}>
+              {/* ChatList messages={messages} */}
+              <header className={styles['chat-header']}>
+                <button className={styles['button-sidebar']}>
+                  <Sidebar size={'16px'} />
+                </button>
+              </header>
+              <div className={styles['chat-list']}>
+                {messages.map((m) => (
+                  <div
+                    className={`${styles['chat-item-row']} ${
+                      m.role === 'user' ? styles.user : styles.ai
+                    }`}
+                    key={m.id}
+                  >
+                    <div className={styles['chat-item-container']}>
+                      <div
+                        className={`${styles['chat-thumbnail']} ${
+                          m.role === 'user' ? styles.user : styles.ai
+                        }`}
+                      />
+                      <p className={styles['chat-content']}>{m.content}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        {/* ChatForm */}
+        <form className={styles['chatting-form']} onSubmit={handleSubmit}>
+          {messages.length ? (
+            <div className={styles['button-group']}>
+              <Button
+                type="ghost"
+                onClick={() => {
+                  setisPopoverOpened(true);
+                }}
+              >
+                다시 입력해서 질문하기
+              </Button>
+              {isPopoverOpened && (
+                <div className={styles['popover-container']}>
+                  <div className={styles['popover-header']}>
+                    <X
+                      className={styles['popover-button-close']}
+                      size={'14px'}
+                      onClick={() => {
+                        setisPopoverOpened(false);
+                      }}
+                    />
+                  </div>
+                  <PromptCreateInputField
+                    setInput={setInput}
+                    onClose={() => {
+                      setisPopoverOpened(false);
+                    }}
+                  />
+                </div>
+              )}
+              <Button
+                icon={<RefreshCcw size={'14px'} />}
+                type="ghost"
+                onClick={() => {
+                  reload();
+                }}
+              >
+                Regenerate
+              </Button>
+            </div>
+          ) : null}
+          <ChatInput
+            isLoading={isLoading}
+            value={input}
+            onChange={handleInputChange}
+          />
+        </form>
       </div>
     </main>
-  )
-}
+  );
+};
+
+export default Home;
