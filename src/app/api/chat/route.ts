@@ -9,6 +9,7 @@ const openai = new OpenAI({
 
 export const runtime = 'edge';
 
+// TODO: 에러 핸들링 케이스 업데이트
 export const POST = async (req: NextRequest) => {
   const { messages } = await req.json();
 

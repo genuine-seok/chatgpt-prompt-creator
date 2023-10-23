@@ -12,7 +12,7 @@ interface PromptCreateFormProps {
 export const PromptCreateForm = ({ setInput }: PromptCreateFormProps) => (
   <form id="prompt-create-form" className={styles['prompt-create-form']}>
     <h1 className={styles['form-placeholder']}>ChatGPT-MR</h1>
-    <div id="prompt-create-form" className={styles['prompt-create-container']}>
+    <div className={styles['prompt-create-container']}>
       <div className={styles['input-field-wrapper']}>
         <PromptCreateInputField setInput={setInput} />
       </div>

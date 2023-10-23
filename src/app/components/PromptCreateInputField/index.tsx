@@ -52,7 +52,7 @@ export const PromptCreateInputField = ({
   return (
     <div className={styles['prompt-create-input-field']}>
       <Textbox
-        label="질문의 목적을 입력해 주세요. 답변은 얻으려고 하는 이유는 무엇인가요?"
+        label="질문의 목적을 입력해 주세요. 답변을 얻으려고 하는 이유는 무엇인가요?"
         placeholder="ex.발표 자료를 만들기 위하여"
         value={purpose}
         onChange={(e) => {
@@ -108,7 +108,7 @@ export const PromptCreateInputField = ({
           </div>
         }
       />
-      {/* ButtonGroup */}
+      {/* TODO: ButtonGroup */}
       <div
         className={`${styles['button-group-container']} ${
           onClose && styles['with-close-button']

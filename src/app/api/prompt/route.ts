@@ -6,6 +6,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY ?? '',
 });
 
+// TODO: 에러 핸들링 케이스 업데이트
 export const POST = async (req: NextRequest) => {
   try {
     const { purpose, subject, characteristics } = await req.json();
