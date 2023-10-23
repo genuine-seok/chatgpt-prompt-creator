@@ -1,4 +1,4 @@
-.chatting-room-background {
+.main-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,33 +7,4 @@
 
   height: 100vh;
   background: #343541;
-}
-
-.button-sidebar {
-  position: fixed;
-  left: 0.5rem;
-
-  color: white;
-  background: none;
-  border: none;
-  outline: none;
-  padding: 12px;
-  cursor: pointer;
-  border-radius: 0.5rem;
-
-  transition: 0.2s ease-in-out background;
-
-  &:hover {
-    background: #40414f;
-  }
-}
-
-.background-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-
-  overflow: auto;
 }

@@ -10,6 +10,7 @@ interface ChatListProps {
 
 export const ChatList = ({ messages }: ChatListProps) => (
   <div className={styles['chat-container']}>
+    {/* TODO: 렌더링 오류 수정 */}
     <header className={styles['chat-header']}>
       <button className={styles['button-sidebar']}>
         <Sidebar size={'16px'} />
