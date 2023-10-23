@@ -2,9 +2,7 @@
 
 import { useChat } from 'ai/react';
 
-import { Sidebar } from 'react-feather';
-
-import { PromptCreateForm, ChatList, ChatForm, IconButton } from './components';
+import { PromptCreateForm, ChatList, ChatForm, Header } from './components';
 import styles from './page.module.scss';
 
 const Home = () => {
@@ -17,7 +15,7 @@ const Home = () => {
 
   return (
     <main className={styles['main-page']}>
-      <IconButton icon={<Sidebar size={'16px'} />} />
+      <Header isFloat={isChatInProgress} />
       {isChatInProgress ? (
         <ChatList messages={messages} />
       ) : (
