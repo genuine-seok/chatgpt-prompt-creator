@@ -2,6 +2,8 @@
 
 import { useChat } from 'ai/react';
 
+import { useMemo } from 'react';
+
 import { PromptCreateForm, ChatList, ChatForm, Header } from './components';
 import styles from './page.module.scss';
 
@@ -11,7 +13,8 @@ const Home = () => {
       id: 'chat-main',
     });
 
-  const isChatInProgress = !!messages.length;
+  // TODO: 컴포넌트 렌더링 최적화하기
+  const isChatInProgress = useMemo(() => !!messages.length, [messages.length]);
 
   return (
     <main className={styles['main-page']}>

@@ -8,11 +8,11 @@ import { Button, Textbox } from '../Common';
 
 interface PromptCreateInputFieldProps {
   setInput?: Dispatch<SetStateAction<string>>;
-  onClose?: () => void;
 }
 
+// TODO: 폼 입력 컨트롤 업데이트
+// TODO: 폼 입력에 대한 렌더링 최적화
 export const PromptCreateInputField = ({
-  onClose,
   setInput,
 }: PromptCreateInputFieldProps) => {
   const { getPromptTextBy } = usePromptCreator();
@@ -109,20 +109,7 @@ export const PromptCreateInputField = ({
         }
       />
       {/* TODO: ButtonGroup */}
-      <div
-        className={`${styles['button-group-container']} ${
-          onClose && styles['with-close-button']
-        }`}
-      >
-        {onClose && (
-          <Button
-            onClick={() => {
-              onClose?.();
-            }}
-          >
-            취소
-          </Button>
-        )}
+      <div className={styles['button-group-container']}>
         <div className={styles['button-group']}>
           <Button
             onClick={() => {

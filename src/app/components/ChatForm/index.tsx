@@ -1,11 +1,12 @@
 import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
-import { RefreshCcw, X } from 'react-feather';
+import { RefreshCcw } from 'react-feather';
 
 import { useChatStore } from '@/app/store';
 
 import styles from './index.module.scss';
 import { ChatInput } from '../ChatInput';
 import { Button } from '../Common';
+import { PopupTrigger } from '../PopupTrigger';
 import { PromptCreateInputField } from '../PromptCreateInputField';
 
 interface ChatFormProps {
@@ -27,13 +28,7 @@ export const ChatForm = ({
   onRegenerateClick,
   onChange,
 }: ChatFormProps) => {
-  const [isLoading, isPopoverOpened, setisPopoverOpened] = useChatStore(
-    (state) => [
-      state.isLoading,
-      state.isPopoverOpened,
-      state.setIsPopoverOpened,
-    ],
-  );
+  const [isLoading] = useChatStore((state) => [state.isLoading]);
 
   return (
     <form
@@ -43,34 +38,11 @@ export const ChatForm = ({
     >
       {isChatInProgress && (
         <div className={styles['button-group']}>
-          <Button
-            variant="ghost"
-            onClick={() => {
-              setisPopoverOpened(true);
-            }}
+          <PopupTrigger
+            popupContent={<PromptCreateInputField setInput={setInput} />}
           >
-            다시 입력해서 질문하기
-          </Button>
-          {/* TODO: Popover 컴포넌트 */}
-          {isPopoverOpened && (
-            <div className={styles['popover-container']}>
-              <div className={styles['popover-header']}>
-                <X
-                  className={styles['popover-button-close']}
-                  size={'14px'}
-                  onClick={() => {
-                    setisPopoverOpened(false);
-                  }}
-                />
-              </div>
-              <PromptCreateInputField
-                setInput={setInput}
-                onClose={() => {
-                  setisPopoverOpened(false);
-                }}
-              />
-            </div>
-          )}
+            <Button variant="ghost">다시 입력해서 질문하기</Button>
+          </PopupTrigger>
           <Button
             icon={<RefreshCcw size={'14px'} />}
             variant="ghost"

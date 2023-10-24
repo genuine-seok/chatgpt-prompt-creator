@@ -1,0 +1,31 @@
+.backdrop-layer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.popover-container {
+  position: absolute;
+  max-width: 548px;
+  bottom: 3rem;
+  padding: 1rem;
+  border: 1px solid #545666;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.popover-header {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.popover-footer {
+  position: absolute;
+  bottom: 2.8rem;
+  left: 2.5rem;
+}
+
+.popover-button-close {
+  color: white;
+  cursor: pointer;
+}
