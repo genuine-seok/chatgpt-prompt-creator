@@ -26,16 +26,23 @@ export const usePromptCreator = () => {
     characteristics,
   }: getPromptTextByProps): Promise<PromptCreateResponseType> => {
     setIsLoading(true);
-    const res = await fetch('/api/prompt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ purpose, subject, characteristics }),
-    });
-    setIsLoading(false);
-    const result = await res.json();
-    return result;
+
+    try {
+      const response = await fetch('/api/prompt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ purpose, subject, characteristics }),
+      });
+
+      setIsLoading(false);
+
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
   };
 
   return { isLoading, getPromptTextBy };
