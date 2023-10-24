@@ -13,8 +13,8 @@ export const POST = async (req: NextRequest) => {
     if (!purpose || !subject || !characteristics)
       throw new Error('목적, 주제, 특징은 필수값입니다.');
 
-    const { OPEN_API_KEY } = process.env;
-    if (!OPEN_API_KEY) throw new Error('OpenAI API KEY is not found');
+    const { OPENAI_API_KEY } = process.env;
+    if (!OPENAI_API_KEY) throw new Error('OpenAI API KEY is not found');
 
     const content = `당신은 프롬프트를 만들어주는 사람입니다. 질문의 목적과 주제, 질문자의 특징을 고려하여 Chat GPT에게 유용한 답을 얻을 수 있는 1개의 문장으로 프롬프트를 만들어줘.
   
@@ -37,6 +37,7 @@ export const POST = async (req: NextRequest) => {
       { status: 200, statusText: 'ok', url: req.url },
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error },
       { status: 500, statusText: 'Internal Server Error', url: req.url },

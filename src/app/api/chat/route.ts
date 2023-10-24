@@ -13,8 +13,8 @@ export const POST = async (req: NextRequest) => {
   try {
     const { messages } = await req.json();
 
-    const { OPEN_API_KEY } = process.env;
-    if (!OPEN_API_KEY) throw new Error('OpenAI API KEY is not found');
+    const { OPENAI_API_KEY } = process.env;
+    if (!OPENAI_API_KEY) throw new Error('OpenAI API KEY is not found');
 
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
@@ -26,6 +26,7 @@ export const POST = async (req: NextRequest) => {
 
     return new StreamingTextResponse(stream, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error },
       { status: 500, statusText: 'Internal Server Error', url: req.url },
