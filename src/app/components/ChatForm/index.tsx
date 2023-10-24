@@ -6,7 +6,7 @@ import { useChatStore } from '@/app/store';
 import styles from './index.module.scss';
 import { ChatInput } from '../ChatInput';
 import { Button } from '../Common';
-import { PopupTrigger } from '../PopupTrigger';
+import { PopoverTrigger } from '../PopoverTrigger';
 import { PromptCreateInputField } from '../PromptCreateInputField';
 
 interface ChatFormProps {
@@ -38,11 +38,11 @@ export const ChatForm = ({
     >
       {isChatInProgress && (
         <div className={styles['button-group']}>
-          <PopupTrigger
+          <PopoverTrigger
             popupContent={<PromptCreateInputField setInput={setInput} />}
           >
             <Button variant="ghost">다시 입력해서 질문하기</Button>
-          </PopupTrigger>
+          </PopoverTrigger>
           <Button
             icon={<RefreshCcw size={'14px'} />}
             variant="ghost"

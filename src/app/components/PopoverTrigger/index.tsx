@@ -1,15 +1,17 @@
 import { ReactNode, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import styles from './index.module.scss';
 import { Button, Popover, RectType } from '../Common';
 
-interface PopupTriggerProps {
+interface PopoverTriggerProps {
   children: ReactNode;
   popupContent?: ReactNode;
 }
 
-export const PopupTrigger = ({ children, popupContent }: PopupTriggerProps) => {
+export const PopoverTrigger = ({
+  children,
+  popupContent,
+}: PopoverTriggerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [targetRect, setTargetRect] = useState<RectType>({
     left: 0,
@@ -20,7 +22,7 @@ export const PopupTrigger = ({ children, popupContent }: PopupTriggerProps) => {
 
   return (
     <div
-      className={styles['popup-trigger-container']}
+      className={'popup-trigger-container'}
       onClick={(e) => {
         setIsOpen(true);
         const rect = e.currentTarget.getBoundingClientRect();
