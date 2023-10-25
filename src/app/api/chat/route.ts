@@ -26,7 +26,6 @@ export const POST = async (req: NextRequest) => {
 
     return new StreamingTextResponse(stream, { status: 200 });
   } catch (error) {
-    console.log(error);
     return NextResponse.json(
       { error },
       { status: 500, statusText: 'Internal Server Error', url: req.url },
