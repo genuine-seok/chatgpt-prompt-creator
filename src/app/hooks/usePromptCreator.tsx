@@ -1,5 +1,7 @@
 import { useChatStore } from '../store';
 
+// import { useChatStore } from '../store';
+
 interface getPromptTextByProps {
   purpose: string;
   subject: string;
@@ -15,6 +17,8 @@ interface PromptCreateResponseType {
 }
 
 export const usePromptCreator = () => {
+  // FIX: useState로 작동하지 않는 이유 알아보기
+  // const [isLoading, setIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useChatStore((state) => [
     state.isLoading,
     state.setIsLoading,
@@ -26,7 +30,6 @@ export const usePromptCreator = () => {
     characteristics,
   }: getPromptTextByProps): Promise<PromptCreateResponseType> => {
     setIsLoading(true);
-
     try {
       const response = await fetch('/api/prompt', {
         method: 'POST',
@@ -35,7 +38,6 @@ export const usePromptCreator = () => {
         },
         body: JSON.stringify({ purpose, subject, characteristics }),
       });
-
       setIsLoading(false);
 
       const result = await response.json();

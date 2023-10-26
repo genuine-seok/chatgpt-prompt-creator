@@ -1,6 +1,9 @@
+// import { Dispatch, SetStateAction } from 'react';
+
 import { Dispatch, SetStateAction } from 'react';
 
 import { usePromptCreator } from '@/app/hooks';
+import { UsePromptCreatorForm } from '@/app/hooks/usePromptCreatorForm';
 import { useChatStore } from '@/app/store';
 
 import styles from './index.module.scss';
@@ -10,42 +13,25 @@ interface PromptCreateInputFieldProps {
   setInput?: Dispatch<SetStateAction<string>>;
 }
 
-// TODO: 폼 입력 컨트롤 업데이트
-// TODO: 폼 입력에 대한 렌더링 최적화
 export const PromptCreateInputField = ({
   setInput,
 }: PromptCreateInputFieldProps) => {
-  const { getPromptTextBy } = usePromptCreator();
-  const [
-    isLoading,
-    purpose,
-    setPurpose,
-    subject,
-    setSubject,
-    characteristics,
-    setCharacteristics,
-    resetPromptForm,
-  ] = useChatStore((state) => [
-    state.isLoading,
-    state.purpose,
-    state.setPurpose,
-    state.subject,
-    state.setSubject,
-    state.characteristics,
-    state.setCharacteristics,
-    state.resetPromptForm,
-  ]);
+  const { purpose, subject, characteristics, reset } = UsePromptCreatorForm();
+  const { getPromptTextBy, isLoading } = usePromptCreator();
+
+  const [setMessage] = useChatStore((state) => [state.setMessage]);
 
   const handleCreatePrompt = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
-    setInput?.('');
+    setMessage('');
     const prompt = await getPromptTextBy({
-      purpose,
-      subject,
-      characteristics,
+      purpose: purpose.value,
+      subject: subject.value,
+      characteristics: characteristics.value,
     });
+    setMessage(prompt.data.content);
     setInput?.(prompt.data.content);
   };
 
@@ -54,10 +40,8 @@ export const PromptCreateInputField = ({
       <Textbox
         label="질문의 목적을 입력해 주세요. 답변을 얻으려고 하는 이유는 무엇인가요?"
         placeholder="ex.발표 자료를 만들기 위하여"
-        value={purpose}
-        onChange={(e) => {
-          setPurpose(e.target.value);
-        }}
+        value={purpose.value}
+        onChange={purpose.onChange}
         tooltipContent={
           <div className={styles['help-container']}>
             <p className={styles['help-title']}>질문 목적에 대한 예시</p>
@@ -73,10 +57,8 @@ export const PromptCreateInputField = ({
       <Textbox
         label="얻고자 하는 주제를 입력해주세요. 어떤 것에 대해 알고 싶으신가요?"
         placeholder="ex. AI 기술 동향"
-        value={subject}
-        onChange={(e) => {
-          setSubject(e.target.value);
-        }}
+        value={subject.value}
+        onChange={subject.onChange}
         tooltipContent={
           <div className={styles['help-container']}>
             <p className={styles['help-title']}>
@@ -93,10 +75,8 @@ export const PromptCreateInputField = ({
       <Textbox
         label="더 나은 답변을 위해 ChatGPT가 고려할 나만의 특징이 있다면 입력해주세요."
         placeholder="ex.금융회사 마케팅팀에서 근무"
-        value={characteristics}
-        onChange={(e) => {
-          setCharacteristics(e.target.value);
-        }}
+        value={characteristics.value}
+        onChange={characteristics.onChange}
         tooltipContent={
           <div className={styles['help-container']}>
             <p className={styles['help-title']}>나만의 특징에 대한 예시</p>
@@ -113,7 +93,7 @@ export const PromptCreateInputField = ({
         <div className={styles['button-group']}>
           <Button
             onClick={() => {
-              resetPromptForm();
+              reset();
             }}
             disabled={!purpose && !subject && !characteristics}
           >
