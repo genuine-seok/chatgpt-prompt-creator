@@ -1,4 +1,5 @@
-import styles from './index.module.scss';
+import { useController, useFormContext } from 'react-hook-form';
+
 import { TextInput } from '../Common';
 
 interface ChatInputProps {
@@ -7,12 +8,20 @@ interface ChatInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ChatInput = ({ isLoading, value, onChange }: ChatInputProps) => (
-  <>
-    <TextInput isLoading={isLoading} value={value} onChange={onChange} />
-    <p className={styles['chat-tip-description']}>
-      Free Research Preview. ChatGPT may produce inaccurate information about
-      people, places, or facts. <span>ChatGPT September 25 Version</span>
-    </p>
-  </>
-);
+export const ChatInput = ({ isLoading, value, onChange }: ChatInputProps) => {
+  const { control } = useFormContext();
+  const { field: message } = useController({ name: 'message', control });
+
+  return (
+    <>
+      <TextInput
+        isLoading={isLoading}
+        value={value}
+        onChange={(e) => {
+          onChange?.(e);
+        }}
+        ref={message.ref}
+      />
+    </>
+  );
+};

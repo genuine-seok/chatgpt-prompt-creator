@@ -6,6 +6,7 @@ import { Spinner } from '../Spinner';
 type VariantType = 'filled' | 'ghost';
 
 interface ButtonProps {
+  className?: string;
   icon?: React.ReactNode;
   variant?: VariantType;
   isLoading?: boolean;
@@ -16,6 +17,7 @@ interface ButtonProps {
 }
 
 export const Button = ({
+  className,
   icon,
   variant = 'filled',
   isLoading,
@@ -27,7 +29,7 @@ export const Button = ({
   <button
     className={`${styles.button} ${styles[variant]} ${
       (isLoading || disabled) && styles.disabled
-    }`}
+    } ${className}`}
     onClick={onClick}
     disabled={disabled || isLoading}
     type={type}

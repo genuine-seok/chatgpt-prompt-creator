@@ -1,6 +1,5 @@
-// import { Dispatch, SetStateAction } from 'react';
-
 import { Dispatch, SetStateAction } from 'react';
+import { useFormContext } from 'react-hook-form';
 
 import { usePromptCreator } from '@/app/hooks';
 import { UsePromptCreatorForm } from '@/app/hooks/usePromptCreatorForm';
@@ -19,6 +18,8 @@ export const PromptCreateInputField = ({
   const { purpose, subject, characteristics, reset } = UsePromptCreatorForm();
   const { getPromptTextBy, isLoading } = usePromptCreator();
 
+  // TODO: 스토어에서 관리할 수 있을지?
+  const { setFocus } = useFormContext();
   const [setMessage] = useChatStore((state) => [state.setMessage]);
 
   const handleCreatePrompt = async (
@@ -33,6 +34,7 @@ export const PromptCreateInputField = ({
     });
     setMessage(prompt.data.content);
     setInput?.(prompt.data.content);
+    setFocus('message');
   };
 
   return (
@@ -92,6 +94,7 @@ export const PromptCreateInputField = ({
       <div className={styles['button-group-container']}>
         <div className={styles['button-group']}>
           <Button
+            className={styles['propmt-button']}
             onClick={() => {
               reset();
             }}
@@ -100,6 +103,7 @@ export const PromptCreateInputField = ({
             초기화
           </Button>
           <Button
+            className={styles['propmt-button']}
             onClick={handleCreatePrompt}
             isLoading={isLoading}
             disabled={!purpose || !subject || !characteristics}
