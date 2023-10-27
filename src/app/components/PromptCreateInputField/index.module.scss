@@ -18,6 +18,10 @@
 .button-group {
   display: flex;
   gap: 0.6rem;
+
+  @media screen and (max-width: 565px) {
+    width: 100%;
+  }
 }
 
 .help-container {

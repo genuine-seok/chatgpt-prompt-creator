@@ -4,6 +4,10 @@
   flex-wrap: wrap;
   max-width: 760px;
   gap: 0.75rem;
-
   padding: 0.5rem 0.25rem;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 535px) {
+    display: none;
+  }
 }

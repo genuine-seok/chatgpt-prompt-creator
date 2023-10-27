@@ -1,4 +1,7 @@
 .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -9,5 +12,22 @@
 
   &.float {
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.header-title {
+  display: none;
+
+  color: rgb(217, 217, 227);
+}
+
+@media screen and (max-width: 760px) {
+  .header-container {
+    height: 43px;
+    border-bottom: 1px solid rgb(86, 88, 105);
+  }
+
+  .header-title {
+    display: block;
   }
 }

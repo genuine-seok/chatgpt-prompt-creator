@@ -12,5 +12,6 @@ export const Header = ({ isFloat }: HeaderProps) => (
     className={`${styles['header-container']} ${isFloat && styles.float}`}
   >
     <IconButton icon={<Sidebar size={'16px'} />} />
+    <p className={styles['header-title']}>New chat</p>
   </header>
 );
