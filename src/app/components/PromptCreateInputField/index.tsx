@@ -6,7 +6,7 @@ import { UsePromptCreatorForm } from '@/app/hooks/usePromptCreatorForm';
 import { useChatStore } from '@/app/store';
 
 import styles from './index.module.scss';
-import { Button, Textbox } from '../Common';
+import { Button, Help, Textbox } from '../Common';
 
 interface PromptCreateInputFieldProps {
   setInput?: Dispatch<SetStateAction<string>>;
@@ -45,15 +45,15 @@ export const PromptCreateInputField = ({
         value={purpose.value}
         onChange={purpose.onChange}
         tooltipContent={
-          <div className={styles['help-container']}>
-            <p className={styles['help-title']}>질문 목적에 대한 예시</p>
-            <ul className={styles['help-list']}>
-              <li className={styles['help-item']}>발표 자료를 만들기 위하여</li>
-              <li className={styles['help-item']}>보고서 작성을 위하여</li>
-              <li className={styles['help-item']}>기사 작성을 위하여</li>
-              <li className={styles['help-item']}>논문 작성을 위하여</li>
-            </ul>
-          </div>
+          <Help
+            title="질문 목적에 대한 예시"
+            items={[
+              '발표 자료를 만들기 위하여',
+              '보고서 작성을 위하여',
+              '기사 작성을 위하여',
+              '논문 작성을 위하여',
+            ]}
+          />
         }
       />
       <Textbox
@@ -62,16 +62,14 @@ export const PromptCreateInputField = ({
         value={subject.value}
         onChange={subject.onChange}
         tooltipContent={
-          <div className={styles['help-container']}>
-            <p className={styles['help-title']}>
-              말하고자 하는 주제에 대한 예시
-            </p>
-            <ul className={styles['help-list']}>
-              <li className={styles['help-item']}>AI 기술 동향</li>
-              <li className={styles['help-item']}>금융분야의 마케팅 트렌드</li>
-              <li className={styles['help-item']}>MZ 세대의 관심사</li>
-            </ul>
-          </div>
+          <Help
+            title="말하고자 하는 주제에 대한 예시"
+            items={[
+              'AI 기술 동향',
+              '금융분야의 마케팅 트렌드',
+              'MZ 세대의 관심사',
+            ]}
+          />
         }
       />
       <Textbox
@@ -80,17 +78,12 @@ export const PromptCreateInputField = ({
         value={characteristics.value}
         onChange={characteristics.onChange}
         tooltipContent={
-          <div className={styles['help-container']}>
-            <p className={styles['help-title']}>나만의 특징에 대한 예시</p>
-            <ul className={styles['help-list']}>
-              <li className={styles['help-item']}>직업 및 직무, 전공</li>
-              <li className={styles['help-item']}>취미 및 관심사</li>
-              <li className={styles['help-item']}>국적</li>
-            </ul>
-          </div>
+          <Help
+            title="나만의 특징에 대한 예시"
+            items={['직업 및 직무, 전공', '취미 및 관심사', '국적']}
+          />
         }
       />
-      {/* TODO: ButtonGroup */}
       <div className={styles['button-group-container']}>
         <div className={styles['button-group']}>
           <Button
