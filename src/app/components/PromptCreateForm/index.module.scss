@@ -1,34 +1,29 @@
-.prompt-create-form {
+@use '../../style/lib.scss' as lib;
+
+.prompt-create-input-field {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-}
-
-.form-placeholder {
-  color: rgba(86, 88, 105, 0.9);
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 2.5rem;
-  height: 100%;
-  padding-top: 4rem;
-}
-
-.prompt-create-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: auto;
   gap: 1rem;
-  margin-bottom: 1rem;
+
+  padding: 30px 24px;
 }
 
-.input-field-wrapper {
-  border: 1px solid rgb(86, 88, 105);
-  border-radius: 0.5rem;
-  width: 748px;
+.button-group-container {
+  display: flex;
+  justify-content: flex-end;
 
-  @media screen and (max-width: 760px) {
+  width: 100%;
+}
+.button-group {
+  display: flex;
+  gap: 0.6rem;
+
+  @media screen and (max-width: 565px) {
     width: 100%;
   }
+}
+
+.propmt-button {
+  min-width: 87px;
 }

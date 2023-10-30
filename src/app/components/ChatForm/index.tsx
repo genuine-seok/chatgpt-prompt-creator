@@ -10,7 +10,7 @@ import styles from './index.module.scss';
 import { ChatInput } from '../ChatInput';
 import { Button } from '../Common';
 import { PopoverTrigger } from '../PopoverTrigger';
-import { PromptCreateInputField } from '../PromptCreateInputField';
+import { PromptCreateForm } from '../PromptCreateForm';
 
 interface ChatFormProps {
   isChatInProgress?: boolean;
@@ -42,7 +42,7 @@ export const ChatForm = ({
       {isChatInProgress && (
         <div className={styles['button-group']}>
           <PopoverTrigger
-            popupContent={<PromptCreateInputField setInput={setInput} />}
+            popupContent={<PromptCreateForm setInput={setInput} />}
           >
             <Button className={styles['message-helper-button']} variant="ghost">
               다시 입력해서 질문하기
