@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <main className={styles['main-page']}>
       <FormProvider {...methods}>
-        <Header isFloat={isChatInProgress} />
+        <Header isFloat={isChatInProgress} messages={messages} />
         {isChatInProgress ? (
           <ChatList messages={messages} />
         ) : (
