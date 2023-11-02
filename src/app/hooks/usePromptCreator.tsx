@@ -1,7 +1,5 @@
 import { useChatStore } from '../store';
 
-// import { useChatStore } from '../store';
-
 interface getPromptTextByProps {
   purpose: string;
   subject: string;
