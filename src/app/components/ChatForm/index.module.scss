@@ -1,0 +1,52 @@
+.chatting-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  width: 48rem;
+  padding-top: 0.5rem;
+
+  font-size: 0.75rem;
+  color: #c5c5d2;
+
+  margin-top: auto;
+
+  @media screen and (max-width: 760px) {
+    width: 100%;
+  }
+}
+
+.button-group {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.chat-tip-description {
+  & > span {
+    text-decoration-line: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.chat-input-container {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.message-send-button {
+  margin-left: auto;
+  width: 32px;
+}
+
+.message-helper-button {
+  max-width: 172px;
+}
