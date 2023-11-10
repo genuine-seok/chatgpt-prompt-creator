@@ -41,6 +41,7 @@ export const PromptCreateForm = ({ setInput }: PromptCreateFormProps) => {
       className={styles['prompt-create-input-field']}
     >
       <Textbox
+        id="textbox-purpose"
         label={`질문의 목적을 입력해 주세요.\n 답변을 얻으려고 하는 이유는 무엇인가요?`}
         placeholder="ex.발표 자료를 만들기 위하여"
         value={purpose.value}
@@ -58,6 +59,7 @@ export const PromptCreateForm = ({ setInput }: PromptCreateFormProps) => {
         }
       />
       <Textbox
+        id="textbox-subject"
         label="얻고자 하는 주제를 입력해주세요. 어떤 것에 대해 알고 싶으신가요?"
         placeholder="ex. AI 기술 동향"
         value={subject.value}
@@ -74,6 +76,7 @@ export const PromptCreateForm = ({ setInput }: PromptCreateFormProps) => {
         }
       />
       <Textbox
+        id="textbox-characteristics"
         label="더 나은 답변을 위해 ChatGPT가 고려할 나만의 특징이 있다면 입력해주세요."
         placeholder="ex.금융회사 마케팅팀에서 근무"
         value={characteristics.value}
