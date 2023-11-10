@@ -6,6 +6,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import styles from './index.module.scss';
 
 interface TextboxProps {
+  id?: string;
   label?: string;
   placeholder?: string;
   tooltipContent?: ReactNode;
@@ -14,6 +15,7 @@ interface TextboxProps {
 }
 
 export const Textbox = ({
+  id,
   label,
   placeholder,
   tooltipContent,
@@ -22,8 +24,8 @@ export const Textbox = ({
 }: TextboxProps) => (
   <div className={styles['textbox-container']}>
     <label
-      id="textbox-label"
-      htmlFor="textbox-input"
+      id={`textbox-label-${id}`}
+      htmlFor={`textbox-input-${id}`}
       className={styles['textbox-label-container']}
     >
       {label}
@@ -52,7 +54,7 @@ export const Textbox = ({
       )}
     </label>
     <input
-      id="textbox-input"
+      id={`textbox-input-${id}`}
       type="text"
       placeholder={placeholder}
       value={value}
