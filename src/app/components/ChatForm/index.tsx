@@ -37,13 +37,6 @@ export const ChatForm = ({
     >
       {isChatInProgress && (
         <div className={styles['button-group']}>
-          {/* <PopoverTrigger
-            popupContent={<PromptCreateForm setInput={setInput} />}
-          >
-            <Button className={styles['message-helper-button']} variant="ghost">
-              다시 입력해서 질문하기
-            </Button>
-          </PopoverTrigger> */}
           <Button
             className={styles['message-helper-button']}
             icon={<RefreshCcw size={'14px'} />}
