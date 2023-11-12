@@ -11,7 +11,6 @@ import {
   Header,
   PromptCardGroup,
   PromptCard,
-  PromptCreateForm,
 } from './components';
 import styles from './page.module.scss';
 
@@ -40,11 +39,11 @@ const Home = () => {
         ) : (
           <>
             <h1 className={styles['form-placeholder']}>ChatGPT-MR</h1>
-            <div className={styles['prompt-create-container']}>
+            {/* <div className={styles['prompt-create-container']}>
               <div className={styles['input-field-wrapper']}>
                 <PromptCreateForm setInput={setInput} />
               </div>
-            </div>
+            </div> */}
             <PromptCardGroup>
               <PromptCard
                 title="Come up with concepts"
