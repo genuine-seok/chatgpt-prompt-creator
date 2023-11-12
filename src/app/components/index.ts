@@ -6,3 +6,4 @@ export * from './ChatList';
 export * from './PromptCard';
 export * from './PromptCreateForm';
 export * from './PromptCardGroup';
+export * from './ChatMessage';

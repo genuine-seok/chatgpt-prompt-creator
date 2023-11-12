@@ -50,7 +50,6 @@ export const Header = ({ isFloat, messages }: HeaderProps) => {
         data={chatData ?? []}
         onClick={handleDownloadClick}
         filename={`chatgpt-mr-chat-data.csv`}
-        href={undefined}
       >
         <IconButton icon={<Download size={'16px'} />} />
       </CSVLink>
