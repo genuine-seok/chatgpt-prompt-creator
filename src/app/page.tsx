@@ -2,8 +2,8 @@
 
 import { useChat } from 'ai/react';
 
-import { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 
 import {
   ChatList,
@@ -16,20 +16,27 @@ import {
 import styles from './page.module.scss';
 
 const Home = () => {
-  const { messages, input, setInput, handleInputChange, handleSubmit, reload } =
+  const { messages, input, setInput, handleSubmit, reload, isLoading, stop } =
     useChat({
       id: 'chat-main',
+      onError: (error) => {
+        toast.error(error.message);
+      },
+      onResponse(response) {
+        if (response.status === 401) toast.error(response.statusText);
+      },
     });
 
-  const isChatInProgress = useMemo(() => !!messages.length, [messages.length]);
   const methods = useForm({ defaultValues: { message: '' } });
 
   return (
     <main className={styles['main-page']}>
       <FormProvider {...methods}>
-        <Header isFloat={isChatInProgress} messages={messages} />
-        {isChatInProgress ? (
-          <ChatList messages={messages} />
+        <Header isFloat={!!messages.length} messages={messages} />
+        {messages.length ? (
+          <>
+            <ChatList messages={messages} isLoading={isLoading} />
+          </>
         ) : (
           <>
             <h1 className={styles['form-placeholder']}>ChatGPT-MR</h1>
@@ -59,14 +66,16 @@ const Home = () => {
           </>
         )}
         <ChatForm
-          isChatInProgress={isChatInProgress}
+          isChatInProgress={!!messages.length}
           input={input}
           setInput={setInput}
           onSubmit={handleSubmit}
           onRegenerateClick={() => {
             reload();
           }}
-          onChange={handleInputChange}
+          onStopClick={() => {
+            stop();
+          }}
         />
       </FormProvider>
     </main>

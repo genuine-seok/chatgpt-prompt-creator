@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react';
-import { RefreshCcw } from 'react-feather';
+import { Dispatch, FormEvent, SetStateAction } from 'react';
+import { RefreshCcw, StopCircle } from 'react-feather';
 
 import Send from '@/../public/send-icon.svg';
 
@@ -18,9 +18,7 @@ interface ChatFormProps {
   setInput?: Dispatch<SetStateAction<string>>;
   onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
   onRegenerateClick: () => void;
-  onChange: (
-    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
-  ) => void;
+  onStopClick: () => void;
 }
 
 export const ChatForm = ({
@@ -29,7 +27,7 @@ export const ChatForm = ({
   setInput,
   onSubmit,
   onRegenerateClick,
-  onChange,
+  onStopClick,
 }: ChatFormProps) => {
   const [isLoading] = useChatStore((state) => [state.isLoading]);
 
@@ -58,11 +56,25 @@ export const ChatForm = ({
           >
             Regenerate
           </Button>
+          <Button
+            className={styles['message-helper-button']}
+            icon={<StopCircle size={'14px'} />}
+            variant="ghost"
+            onClick={() => {
+              onStopClick?.();
+            }}
+          >
+            Stop
+          </Button>
         </div>
       )}
       {/* TODO: 컴포넌트 인라인화하기 */}
       <div className={styles['chat-input-container']}>
-        <ChatInput isLoading={isLoading} value={input} onChange={onChange} />
+        <ChatInput
+          isLoading={isLoading}
+          value={input}
+          onChange={(e) => setInput?.(e.target.value)}
+        />
         <Button
           className={styles['message-send-button']}
           type="submit"
